@@ -72,6 +72,38 @@ namespace Lab3
             return instance * number;
         }
 
+        public static bool operator ==(Speed left, Speed right)
+        {
+            if (ReferenceEquals(left, null) && ReferenceEquals(right, null)) return true;
+            if (ReferenceEquals(left, null) || ReferenceEquals(right, null)) return false;
+       
+            var leftMps = left.To(MeasureType.mps).value;
+            var rightMps = right.To(MeasureType.mps).value;
+            var result = Math.Abs(leftMps - rightMps) < 0.00000001;
+            return result;
+        }
+
+        public static bool operator !=(Speed left, Speed right)
+        {
+            return !(left == right);
+        }
+
+        public static bool operator >(Speed left, Speed right)
+        {
+            var leftMps = left.To(MeasureType.mps).value;
+            var rightMps = right.To(MeasureType.mps).value;
+            var result = leftMps > rightMps;
+            return result;
+        }
+
+        public static bool operator <(Speed left, Speed right)
+        {
+            var leftMps = left.To(MeasureType.mps).value;
+            var rightMps = right.To(MeasureType.mps).value;
+            var result = leftMps < rightMps;
+            return result;
+        }
+
         public Speed To(MeasureType newType)
         {
             var newValue = this.value;

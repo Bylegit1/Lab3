@@ -75,7 +75,7 @@ namespace Lab3.Tests
         }
        
         [TestMethod()]
-        public void AddMpsKphKnMax()
+        public void AddMpsKphKnMaxTest()
         {
             var mps = new Speed(10, MeasureType.mps);
             var kph = new Speed(5, MeasureType.kph);
@@ -83,6 +83,18 @@ namespace Lab3.Tests
             var max = new Speed(10, MeasureType.max);
 
             Assert.AreEqual("28 м/с", (mps + kph).Verbose());
+        }
+
+        [TestMethod()]
+        public void ComparisonTest()
+        {
+            var speed1 = new Speed(10, MeasureType.kph);
+            var speed2 = new Speed(36, MeasureType.mps);
+            Assert.IsTrue(speed1 == speed2, speed1.To(MeasureType.mps).Verbose());
+
+            speed1 = new Speed(2, MeasureType.max);
+            speed2 = new Speed(1, MeasureType.kn);
+            Assert.IsTrue(speed1 > speed2, speed2.To(MeasureType.max).Verbose());
         }
 
     }
