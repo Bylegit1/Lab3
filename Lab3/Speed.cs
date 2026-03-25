@@ -33,7 +33,7 @@ namespace Lab3
                     typeVerbose = "уз";
                     break;
                 case MeasureType.max:
-                    typeVerbose = "М";
+                    typeVerbose = "мах";
                     break;
             }
             return String.Format("{0} {1}", this.value, typeVerbose);
@@ -42,9 +42,6 @@ namespace Lab3
         public static Speed operator +(Speed instance, double number)
         {
             return new Speed(instance.value + number, instance.type);
-            //var newValue = instance.value + number;
-            //var speed = new Speed(newValue, instance.type);
-            //return speed;
         }
 
         public static Speed operator +(double number, Speed instance)
@@ -59,7 +56,7 @@ namespace Lab3
 
         public static Speed operator -(double number, Speed instance)
         {
-            return instance - number;
+            return new Speed(number - instance.value, instance.type);
         }
 
         public static Speed operator *(Speed instance, double number)
