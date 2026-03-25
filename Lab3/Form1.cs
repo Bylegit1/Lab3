@@ -59,7 +59,7 @@ namespace Lab3
 
                 Speed sumSpeed;
 
-                if (cmbOperation.Text == "+" || cmbOperation.Text == "-")
+                if (cmbOperation.Text == "+" || cmbOperation.Text == "-" || cmbOperation.Text == "*")
                 {
                     switch (cmbOperation.Text)
                     {
@@ -68,6 +68,9 @@ namespace Lab3
                             break;
                         case "-":
                             sumSpeed = firstSpeed - secondSpeed;
+                            break;
+                        case "*":
+                            sumSpeed = firstSpeed * secondSpeed; 
                             break;
                         default:
                             sumSpeed = new Speed(0, MeasureType.mps);
@@ -101,36 +104,16 @@ namespace Lab3
             }
             catch (FormatException)
             {
-                txtResult.Text = "Ошибка: неверный формат";
+                
             }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void onValueTextChanged(object sender, EventArgs e)
         {
             Calculate();
         }
 
-        private void txtSecond_TextChanged(object sender, EventArgs e)
-        {
-            Calculate();
-        }
-
-        private void cmbOperation_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Calculate();
-        }
-
-        private void cmbFirstType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Calculate();
-        }
-
-        private void cmbSecondType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Calculate();
-        }
-
-        private void cmbResultType_SelectedIndexChanged(object sender, EventArgs e)
+        private void onValueChanged(object sender, EventArgs e)
         {
             Calculate();
         }

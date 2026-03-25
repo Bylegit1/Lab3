@@ -156,5 +156,10 @@ namespace Lab3
         {
             return speed1 - speed2.To(speed1.type).value;
         }
+
+        public static Speed operator *(Speed speed1, Speed speed2)
+        {
+            return speed1 * speed2.To(speed1.type).value;
+        }
     }
 }

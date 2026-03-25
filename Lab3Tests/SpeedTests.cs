@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace Lab3.Tests
 {
@@ -159,6 +160,25 @@ namespace Lab3.Tests
             speed = new Speed(2, MeasureType.max);
             Assert.AreEqual("662,92 м/с", speed.To(MeasureType.mps).Verbose());
             Assert.AreEqual("2455,259259259259 км/ч", speed.To(MeasureType.kph).Verbose());
+        }
+
+        [TestMethod()]
+        public void ProductSpeed()
+        {
+            var speed1 = new Speed(2, MeasureType.mps);
+            var speed2 = new Speed(3, MeasureType.mps);
+            var result = speed1 * speed2;
+            Assert.AreEqual("6 м/с", result.To(MeasureType.mps).Verbose());
+
+            speed1 = new Speed(2, MeasureType.kph);
+            speed2 = new Speed(3, MeasureType.max);
+            result = speed1 * speed2;
+            Assert.AreEqual("98210,37037037035 км/ч", result.To(MeasureType.kph).Verbose());
+
+            speed1 = new Speed(1, MeasureType.kn);
+            speed2 = new Speed(1, MeasureType.mps);
+            result = speed1 * speed2;
+            Assert.AreEqual("7,357567866281094 уз", result.To(MeasureType.kn).Verbose());
         }
 
     }
