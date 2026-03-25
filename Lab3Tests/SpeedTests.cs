@@ -108,7 +108,57 @@ namespace Lab3.Tests
             speed2 = new Speed(1, MeasureType.kn);
             Assert.IsTrue(speed1 > speed2, speed2.To(MeasureType.max).Verbose());
 
-           
+            speed1 = new Speed(50, MeasureType.kph);
+            speed2 = new Speed(20, MeasureType.mps);
+            Assert.IsTrue(speed1 > speed2, "50 км/ч > 20 м/с");
+
+            speed1 = new Speed(100, MeasureType.kph);
+            speed2 = new Speed(30, MeasureType.mps);
+            Assert.IsTrue(speed1 != speed2, "100 км/ч != 30 м/с");
+
+            speed1 = new Speed(1, MeasureType.max);
+            speed2 = new Speed(300, MeasureType.mps);
+            Assert.IsTrue(speed1 > speed2, "1 мах > 300 м/с");
+
+            speed1 = new Speed(100, MeasureType.kn);
+            speed2 = new Speed(50, MeasureType.mps);
+            Assert.IsTrue(speed1 > speed2, "100 узлов > 50 м/с");
+        }
+
+        [TestMethod()]
+        public void DifferenceSpeedsTest()
+        {
+            var speed1 = new Speed(30, MeasureType.mps);
+            var speed2 = new Speed(36, MeasureType.kph); 
+            var result = speed1 - speed2;
+            Assert.AreEqual("-99,6 м/с", result.Verbose());
+
+            speed1 = new Speed(100, MeasureType.kph);
+            speed2 = new Speed(10, MeasureType.mps); 
+            result = speed1 - speed2;
+            Assert.AreEqual("62,96296296296296 км/ч", result.Verbose());
+
+            speed1 = new Speed(20, MeasureType.kn);
+            speed2 = new Speed(5, MeasureType.mps);
+            result = speed1 - speed2;
+            Assert.AreEqual("10,272373540856032 уз", result.Verbose());
+        }
+
+        [TestMethod()]
+        public void ConvertToDifferentTypesTest()
+        {
+            var speed = new Speed(100, MeasureType.kph);
+            Assert.AreEqual("360 м/с", speed.To(MeasureType.mps).Verbose());
+            Assert.AreEqual("700,3891050583658 уз", speed.To(MeasureType.kn).Verbose());
+            Assert.AreEqual("1,0861039039401437 мах", speed.To(MeasureType.max).Verbose());
+
+            speed = new Speed(50, MeasureType.kn);
+            Assert.AreEqual("97,19200000000001 м/с", speed.To(MeasureType.mps).Verbose());
+            Assert.AreEqual("359,97037037037035 км/ч", speed.To(MeasureType.kph).Verbose());
+
+            speed = new Speed(2, MeasureType.max);
+            Assert.AreEqual("662,92 м/с", speed.To(MeasureType.mps).Verbose());
+            Assert.AreEqual("2455,259259259259 км/ч", speed.To(MeasureType.kph).Verbose());
         }
 
     }
