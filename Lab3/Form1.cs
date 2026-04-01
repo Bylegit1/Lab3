@@ -7,12 +7,12 @@ namespace Lab3
             InitializeComponent();
 
             var measureItems = new string[]
-        {
+            {
             "μ/ρ",
             "κμ/χ",
             "ση",
             "μΰυ",
-        };
+            };
 
             cmbFirstType.DataSource = new List<string>(measureItems);
             cmbSecondType.DataSource = new List<string>(measureItems);

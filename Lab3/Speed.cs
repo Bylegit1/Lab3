@@ -71,9 +71,6 @@ namespace Lab3
 
         public static bool operator ==(Speed left, Speed right)
         {
-            if (ReferenceEquals(left, null) && ReferenceEquals(right, null)) return true;
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null)) return false;
-       
             var leftMps = left.To(MeasureType.mps).value;
             var rightMps = right.To(MeasureType.mps).value;
             var result = Math.Abs(leftMps - rightMps) < 0.00000001;
